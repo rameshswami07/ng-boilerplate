@@ -166,21 +166,20 @@ wts.homepage.infiniscroll = {
 
     // TODO: this should be called AFTER the menu is populated from server
     wts.homepage.infiniscroll.setupSubMenu();
-    return;
-    getCategories(function (data) {
-      if (data) {
-        var i, categoryLength, categories = data.vo,
-          $categoryMenu = $('.category-menu'),
-          categoryHTML = '<li><a href="#" data-category-id="-1" class="active">All Categories</a></li>';
+    // getCategories(function (data) {
+    //   if (data) {
+    //     var i, categoryLength, categories = data.vo,
+    //       $categoryMenu = $('.category-menu'),
+    //       categoryHTML = '<li><a href="#" data-category-id="-1" class="active">All Categories</a></li>';
 
-        for (i = 0, categoryLength = categories.length; i < categoryLength; i = i + 1) {
-          categoryHTML += '<li><a href="#" data-category-id="' + categories[i].id + '">' + categories[i].name + '</a></li>';
-        }
-        $categoryMenu.html(categoryHTML);
+    //     for (i = 0, categoryLength = categories.length; i < categoryLength; i = i + 1) {
+    //       categoryHTML += '<li><a href="#" data-category-id="' + categories[i].id + '">' + categories[i].name + '</a></li>';
+    //     }
+    //     $categoryMenu.html(categoryHTML);
 
-        console.log(data);
-      }
-    });
+    //     console.log(data);
+    //   }
+    // });
   },
   refreshItems: function () {
     var $container = $('.tiles');
