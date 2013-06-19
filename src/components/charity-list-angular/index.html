@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="CharitiesDropDown" ng-controller="CharitiesDropDownController">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>WebThriftStore Charity List</title>
+
+    <!-- Le styles -->
+    <link href="css/base.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div>
+    <div class="container">
+        <div class="wts-dropdown">
+            <a href="#">Charity Partners</a>
+            <ul class="wts-dropdown-menu">
+                <li class="sub-menu fill">
+                    <strong>Our Charity Partners</strong>
+                    <ul class="charity-list">
+                        <li ng-repeat="item in charities"><a href="http://{{item.handle}}.webthriftstore.com">{{ item.name }}</a></li>
+                    </ul>
+                </li>
+                <li class="footer">
+                    <a href="#"><strong>Become a Charity Partner</strong></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- angular -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+<script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
+<script src="js/main.js"></script>
+
+<script src="../assets/js/libs/jquery.js"></script>
+<script src="../assets/js/libs/socket.io.js"></script>
+<script src="../assets/js/enums/messagetype.js"></script>
+<script src="../assets/js/libs/socketcontroller.js"></script>
+<script src="../assets/js/libs/autostartcontroller.js"></script>
+
+</body>
+
+</html>

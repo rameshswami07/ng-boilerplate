@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#" ng-app="infiniteScroll" ng-controller="InfiniteScrollCtrl">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>WebThriftStore Infinite Scrolling</title>
+
+    <!-- Le styles -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="css/infinite-scroll.less" rel="stylesheet/less">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+
+    <!-- This if for dev environment only -->
+    <script src="../assets/js/libs/less-1.3.3.min.js"></script>
+</head>
+
+  <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=184082518300055";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+        <div class="tile-container">
+          <div class="tile-menu-bar clearfix">
+            <div class="categories-dropdown"><a href="#" class="wts-dropdown-link category-selector">Categories</a></div>
+            <div class="filter">
+              <strong class="filter-sort-by">Sort By:</strong>
+              <div class="filter-dropdown">
+                <a href="#" class="wts-dropdown-link filter-selector">Sort By</a>
+                <ul class="filter-menu menu-dropdown">
+                  <li><a href="#" data-rank="loved">Most Loved</a></li>
+                  <li><a href="#" data-rank="charity_name">Charity A-Z</a></li>
+                  <li><a href="#" data-rank="-charity_name">Charity Z-A</a></li>
+                  <li><a href="#" data-rank="-item_date_donated" class="active">Most Recently Donated</a></li>
+                  <li><a href="#" data-rank="item_price">Price: Low to High</a></li>
+                  <li><a href="#" data-rank="-item_price">Price: High to Low</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="tiles">
+            <div class="tile menu-tile">
+              <ul class="category-menu menu-dropdown">
+                <li><a href="#" data-category-id="-1">All Charities</a></li>
+                <li ng-repeat="category in categories"><a href="#" data-category-id="{{ category.id }}">{{ category.name }}</a></li>
+              </ul>
+              <a href="#" class="wts-dropdown-link">How it works</a>
+              <div class="how-it-works-menu menu-dropdown">
+                <div class="shop-for-bargains">
+                  <h3>Shop For Bargains</h3>
+                  <p>List an item &amp; set a price. Everything is donated by people like you to raise money for great causes.</p>
+                </div>
+                <div class="donate-your-stuff">
+                  <h3>Donate Your Stuff</h3>
+                  <p>When you shop at WebThriftStore, you help charities and the planet.</p>
+                </div>
+                <div class="all-for-good">
+                  <h3>All For Good</h3>
+                  <p>The charity gets the money. The donor declutters and gets a tax receipt. The buyer gets a bargain. Everyone wins!</p>
+                </div>
+              </div>
+            </div>
+            <div class="tile" ng-repeat="tile in tiles">
+              <div class="tile-image">
+                <a href="{{ tile.data.link }}"><img ng-src="{{ tile.data.imgSrc }}" alt=""></a>
+                <div class="tile-details tile-header">
+                  <div class="avatar">
+                    <img ng-src="{{ tile.data.avatarSrc }}" alt="">
+                  </div>
+                  <div class="donation-info">
+                    <p>Donated by: <strong><a href="/?action=search&amp;ref=user&amp;q_user_id={{ tile.data.user_id }}">{{ tile.data.use_first_name }} {{ tile.data.user_last_name }}</a></strong></p>
+                    <a href="http://{{ tile.data.charity_handle }}.webthriftstore.com/"><img class="tile-charity" ng-src="http://wts-media-dev.s3.amazonaws.com/application/{{ tile.data.charity_handle[0] }}/small/logo.png" alt=""></a>
+                  </div>
+                </div>
+              </div>
+              <h3 class="title"><a href="{{ tile.data.link }}">{{ tile.data.item_name[0] }}</a></h3>
+              <p class="price"><ins>{{ tile.data.item_price }}</ins></p>
+              <div class="tile-details tile-footer">
+                <a href="#" class="tile-details-link">Details</a>
+                <ul class="tile-social">
+                  <li><a href="#" class="tile-love">24</a></li>
+                  <li class="tile-like">
+                    <fb:like href="{{ tile.data.link }}" send="false" layout="button_count" width="47" show_faces="false"></fb:like>
+                  </li>
+                  <li><a href="#" class="tile-share">Share</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+    <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js"></script>
+
+    <script src="../assets/js/libs/jquery.js"></script>
+    <script src="../assets/js/libs/jquery.masonry.min.js"></script>
+    <script src="../assets/js/libs/socket.io.js"></script>
+    <script src="../assets/js/enums/messagetype.js"></script>
+    <script src="../assets/js/libs/socketcontroller.min.js"></script>
+    <script src="../assets/js/libs/autostartcontroller.js"></script>
+    <script src="js/base.js"></script>
+
+</body>
+</html>
