@@ -1,5 +1,4 @@
-/*global $, document, window */
-/*jslint sloppy: true, indent: 2 */
+/*global $, window */
 /**
  * Pulls in list of charities
  * @author Jon Hughes

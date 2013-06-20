@@ -20,9 +20,9 @@ charitiesModule.controller(
             });
 
             $scope.$apply();
-        }
+        };
 
         $scope.applicationConnectedReady = function() {
             getListOfActiveCharities(_scope.charitiesCallback);
-        }
+        };
 });
