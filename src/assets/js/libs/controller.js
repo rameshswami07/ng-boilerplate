@@ -156,10 +156,14 @@ function addVideoPlayer(clientId,isViewer) {
     }
 }
 
-$(document).ready(function() {
-    listenToUserActions();
-    connectUser();
-});
+if (typeof jQuery !== 'undefined') {
+    $(document).ready(function() {
+        listenToUserActions();
+        connectUser();
+    });
+} else {
+    console.log('jQuery not loaded');
+}
 
 function connectUser() {
     isAutoConnect = true;
