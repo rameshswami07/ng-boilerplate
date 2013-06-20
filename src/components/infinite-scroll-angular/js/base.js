@@ -1,5 +1,5 @@
-/*global $, document, window */
-/*jslint sloppy: true, indent: 2 */
+/*global $, document, window, console */
+/*jslint indent: 2 */
 /**
  * Sets up responsive masonry tiles and infinite scroller
  * @author Jon Hughes
@@ -21,19 +21,18 @@ infiniteScroll.controller('InfiniteScrollCtrl', function ($scope) {
   $scope.categoryCallback = function (response) {
     $scope.categories = response.vo;
     $scope.$apply();
-  }
+  };
 
   $scope.tileCallback = function (response) {
-    var $container = $('.tiles');
 
-      var i, itemsLength, $newItems, newItemsHTML = '', item,
-        imgPath = 'http://dhg8u48nhwyd0.cloudfront.net/item/', anonymousAvatar = 'img/avatar.jpg';
+    var i, itemsLength, $newItems, newItemsHTML = '', item,
+      imgPath = 'http://dhg8u48nhwyd0.cloudfront.net/item/', anonymousAvatar = 'img/avatar.jpg';
 
-        // $scope.tiles = $scope.tiles || [];
-        $scope.tiles = JSON.parse(response.vo).hits.hit;
-        console.log($scope.tiles);
-        $scope.$apply();
-  }
+    // $scope.tiles = $scope.tiles || [];
+    $scope.tiles = JSON.parse(response.vo).hits.hit;
+    console.log($scope.tiles);
+    $scope.$apply();
+  };
 
   $scope.applicationConnectedReady = function() {
 
@@ -58,7 +57,7 @@ infiniteScroll.controller('InfiniteScrollCtrl', function ($scope) {
     };
 
     serviceCall('getHomeProducts', '_scope.tileCallback', params);
-  }
+  };
 
 });
 
@@ -360,7 +359,7 @@ wts.util.numberFormat = function (number, decimals, dec_point, thousands_sep) {
     }
   }
   return s[1].length ? s.join(dec) : s[0];
-}
+};
 
 
 function applicationConnectedReady() {
