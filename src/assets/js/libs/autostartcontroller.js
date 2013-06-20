@@ -8,6 +8,7 @@ function connectToSocket() {
     var hostName = window.location.hostname,
         port,
         roomSetup,
+        transporter,
         connectURL;
 
     userId = makeid(10);
@@ -32,7 +33,12 @@ function connectToSocket() {
         debugMode : true
     });
 
-    socketController.connectToSocket();
+    transporter = {
+        transporterType : 'socket.io',
+        socket : io.connect(connectURL)
+    };
+
+    socketController.connectToSocket(transporter);
 }
 
 function stateChangeCallBackFunction(data) {
@@ -80,10 +86,14 @@ function messageFromRoomCallBackfunction2(data) {
     console.log(JSON.stringify(data.vo));
 }
 
-$(document).ready(function () {
-    'use strict';
-    connectUser();
-});
+if (typeof jQuery != 'undefined') {
+    $(document).ready(function () {
+        'use strict';
+        connectUser();
+    });
+} else {
+    console.log('jQuery not loaded');
+}
 
 function connectUser() {
     'use strict';
